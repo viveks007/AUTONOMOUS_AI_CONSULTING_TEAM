@@ -15,3 +15,5 @@ generated_reports/
 .vscode/
 
 *.log
+
+test.py

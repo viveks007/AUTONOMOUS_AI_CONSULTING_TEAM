@@ -9,14 +9,8 @@ def solution_architect(
 
     response = llm.invoke(
         ARCHITECT_PROMPT.format(
-            business_analysis=
-            state["business_analysis"],
-
-            market_analysis=
-            state["market_analysis"],
-
-            ds_analysis=
-            state["ds_analysis"]
+            combined_analysis=
+            state["combined_analysis"]
         )
     )
 

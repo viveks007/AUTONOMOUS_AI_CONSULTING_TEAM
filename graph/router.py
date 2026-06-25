@@ -1,33 +1,38 @@
 def supervisor_router(state):
 
     if not state.get(
-        "business_analysis", ""
-    ).strip():
+        "business_analysis"
+    ):
         return "business_analyst"
 
     if not state.get(
-        "market_analysis", ""
-    ).strip():
+        "market_analysis"
+    ):
         return "market_researcher"
 
     if not state.get(
-        "ds_analysis", ""
-    ).strip():
+        "ds_analysis"
+    ):
         return "data_scientist"
 
     if not state.get(
-        "architecture", ""
-    ).strip():
+        "combined_analysis"
+    ):
+        return "merge_analysis"
+
+    if not state.get(
+        "architecture"
+    ):
         return "solution_architect"
 
     if not state.get(
-        "roi_analysis", ""
-    ).strip():
+        "roi_analysis"
+    ):
         return "financial_analyst"
 
     if not state.get(
-        "review_feedback", ""
-    ).strip():
+        "review_feedback"
+    ):
         return "reviewer"
 
     return "FINISH"

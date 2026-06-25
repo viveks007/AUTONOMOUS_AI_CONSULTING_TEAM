@@ -15,6 +15,8 @@ from agents.solution_architect import solution_architect
 from agents.financial_analyst import financial_analyst
 from agents.reviewer import reviewer
 
+from graph.reducers import merge_analysis
+
 
 builder = StateGraph(
     ConsultingState
@@ -38,6 +40,11 @@ builder.add_node(
 builder.add_node(
     "data_scientist",
     data_scientist
+)
+
+builder.add_node(
+    "merge_analysis",
+    merge_analysis
 )
 
 builder.add_node(
@@ -98,6 +105,11 @@ builder.add_edge(
 
 builder.add_edge(
     "data_scientist",
+    "supervisor"
+)
+
+builder.add_edge(
+    "merge_analysis",
     "supervisor"
 )
 

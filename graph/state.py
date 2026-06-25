@@ -13,6 +13,8 @@ class ConsultingState(TypedDict):
 
     ds_analysis: str
 
+    combined_analysis: str
+
     architecture: str
 
     roi_analysis: str
