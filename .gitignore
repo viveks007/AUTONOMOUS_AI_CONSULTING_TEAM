@@ -1,0 +1,17 @@
+venv/
+.env
+
+__pycache__/
+*.pyc
+
+.ipynb_checkpoints/
+
+data/checkpoints/
+
+generated_reports/
+
+.langgraph_api/
+
+.vscode/
+
+*.log
