@@ -10,5 +10,5 @@ Analyze the business problem and provide:
 5. Business Recommendations
 
 Business Query:
-{query}
+{user_query}
 """

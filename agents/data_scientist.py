@@ -10,31 +10,21 @@ def data_scientist(
 
     response = llm.invoke(
         DS_PROMPT.format(
-            business_analysis=
-            state.get(
-                "business_analysis",
-                ""
-            ),
-
-            market_analysis=
-            state.get(
-                "market_analysis",
-                ""
-            )
+            user_query = state["user_query"]
         )
     )
 
     return {
 
-    "ds_analysis":
-    response.content,
+        "ds_analysis":
+        response.content,
 
-    "analysis_sections": [
+        "analysis_sections": [
 
-        f"""
-    DATA SCIENCE ANALYSIS
+            f"""
+        DATA SCIENCE ANALYSIS
 
-    {response.content}
-    """
-        ]
-    }
+        {response.content}
+        """
+            ]
+        }

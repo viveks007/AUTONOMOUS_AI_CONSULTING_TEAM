@@ -11,9 +11,7 @@ Provide:
 
 Context:
 
-Business Analysis:
-{business_analysis}
+user_query:
+{user_query}
 
-Market Analysis:
-{market_analysis}
 """

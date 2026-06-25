@@ -10,12 +10,13 @@ def market_researcher(
 
     response = llm.invoke(
         MARKET_PROMPT.format(
-            business_analysis=
-            state["business_analysis"]
+            user_query=state["user_query"]
         )
     )
 
     return {
-        "market_analysis":
-        response.content
-    }
+            "market_analysis": response.content,
+            "analysis_sections": [
+                f"MARKET\n{response.content}"
+            ]
+        }

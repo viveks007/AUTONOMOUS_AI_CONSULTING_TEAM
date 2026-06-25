@@ -14,18 +14,6 @@ def financial_analyst(
             state["architecture"]
         )
     )
-
     return {
-
-    "market_analysis":
-    response.content,
-
-    "analysis_sections": [
-
-        f"""
-    MARKET ANALYSIS
-
-    {response.content}
-    """
-        ]
-    }
+        "roi_analysis": response.content
+            }

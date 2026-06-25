@@ -10,7 +10,7 @@ def solution_architect(
 
     response = llm.invoke(
         ARCHITECT_PROMPT.format(
-            combined_analysis="\n\n".join(
+            analysis_sections="\n\n".join(
             state["analysis_sections"]
         ))
     )

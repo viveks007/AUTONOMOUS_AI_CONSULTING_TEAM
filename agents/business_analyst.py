@@ -12,7 +12,7 @@ def business_analyst(
 
     response = llm.invoke(
         BUSINESS_PROMPT.format(
-            query=query
+            user_query= state["user_query"]
         )
     )
 

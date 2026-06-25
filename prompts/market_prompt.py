@@ -7,7 +7,6 @@ Analyze:
 2. Competitor Strategies
 3. Emerging Opportunities
 
-Business Context:
-
-{business_analysis}
+user_query:
+{user_query}
 """
