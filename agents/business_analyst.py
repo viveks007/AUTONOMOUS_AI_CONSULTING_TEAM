@@ -6,6 +6,7 @@ from prompts.business_prompt import BUSINESS_PROMPT
 def business_analyst(
     state: ConsultingState
 ):
+    print("\n========== Business Analyst ==========")
 
     query = state["user_query"]
 
@@ -16,5 +17,16 @@ def business_analyst(
     )
 
     return {
-        "business_analysis": response.content
+
+    "business_analysis":
+    response.content,
+
+    "analysis_sections": [
+
+        f"""
+    BUSINESS ANALYSIS
+
+    {response.content}
+    """
+        ]
     }

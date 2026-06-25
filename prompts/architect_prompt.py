@@ -14,5 +14,5 @@ Provide:
 
 Analysis:
 
-{combined_analysis}
+{analysis_sections}
 """

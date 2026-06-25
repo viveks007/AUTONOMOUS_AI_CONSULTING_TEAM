@@ -6,6 +6,7 @@ from prompts.ds_prompt import DS_PROMPT
 def data_scientist(
     state: ConsultingState
 ):
+    print("========== Data Scientist ==========")
 
     response = llm.invoke(
         DS_PROMPT.format(
@@ -24,6 +25,16 @@ def data_scientist(
     )
 
     return {
-        "ds_analysis":
-        response.content
+
+    "ds_analysis":
+    response.content,
+
+    "analysis_sections": [
+
+        f"""
+    DATA SCIENCE ANALYSIS
+
+    {response.content}
+    """
+        ]
     }

@@ -1,9 +1,7 @@
 from typing_extensions import TypedDict, Annotated
-from langgraph.graph.message import add_messages
-from langchain_core.messages import AnyMessage
+import operator
 
-
-class ConsultingState(TypedDict):
+class ConsultingState(TypedDict, total=False):
 
     user_query: str
 
@@ -13,7 +11,10 @@ class ConsultingState(TypedDict):
 
     ds_analysis: str
 
-    combined_analysis: str
+    analysis_sections: Annotated[
+        list[str],
+        operator.add
+    ]
 
     architecture: str
 
@@ -21,11 +22,6 @@ class ConsultingState(TypedDict):
 
     review_feedback: str
 
-    final_report: str
-
     approved: bool
 
-    messages: Annotated[
-        list[AnyMessage],
-        add_messages
-    ]
+    messages: str

@@ -6,6 +6,7 @@ from prompts.finance_prompt import FINANCE_PROMPT
 def financial_analyst(
     state: ConsultingState
 ):
+    print("========== Financial Analyst ==========")
 
     response = llm.invoke(
         FINANCE_PROMPT.format(
@@ -15,6 +16,16 @@ def financial_analyst(
     )
 
     return {
-        "roi_analysis":
-        response.content
+
+    "market_analysis":
+    response.content,
+
+    "analysis_sections": [
+
+        f"""
+    MARKET ANALYSIS
+
+    {response.content}
+    """
+        ]
     }

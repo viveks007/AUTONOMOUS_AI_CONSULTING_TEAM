@@ -6,6 +6,7 @@ from prompts.reviewer_prompt import REVIEWER_PROMPT
 def reviewer(
     state: ConsultingState
 ):
+    print("========== Reviewer ==========")
 
     response = llm.invoke(
         REVIEWER_PROMPT.format(

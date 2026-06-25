@@ -6,6 +6,7 @@ from prompts.market_prompt import MARKET_PROMPT
 def market_researcher(
     state: ConsultingState
 ):
+    print("========== Market Researcher ==========")
 
     response = llm.invoke(
         MARKET_PROMPT.format(

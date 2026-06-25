@@ -6,12 +6,13 @@ from prompts.architect_prompt import ARCHITECT_PROMPT
 def solution_architect(
     state: ConsultingState
 ):
+    print("========== Solution Architect ==========")
 
     response = llm.invoke(
         ARCHITECT_PROMPT.format(
-            combined_analysis=
-            state["combined_analysis"]
-        )
+            combined_analysis="\n\n".join(
+            state["analysis_sections"]
+        ))
     )
 
     return {
