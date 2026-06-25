@@ -1,11 +1,11 @@
-from typing import TypedDict, List
-from typing_extensions import Annotated
+from typing_extensions import TypedDict, Annotated
+from langgraph.graph.message import add_messages
+from langchain_core.messages import AnyMessage
+
 
 class ConsultingState(TypedDict):
 
     user_query: str
-
-    plan: str
 
     business_analysis: str
 
@@ -21,8 +21,9 @@ class ConsultingState(TypedDict):
 
     final_report: str
 
-    next_agent: str
-
     approved: bool
 
-    messages: List[str]
+    messages: Annotated[
+        list[AnyMessage],
+        add_messages
+    ]
