@@ -127,6 +127,42 @@ version 5:
  DateTime
  Wikipedia
 
- 
+ version 6:
+
+ AUTONOMOUS_AI_CONSULTING_TEAM
+│
+├── agents/
+├── graph/
+├── tools/
+│
+└── mcp/
+    │
+    ├── __init__.py
+    ├── server.py          ← MCP Server
+    ├── client.py          ← MCP Client
+    ├── config.py
+    └── tool_wrapper.py
+
+Part 1 MCP Server
+
+Part 2 Inspector
+
+
+Part 3 MCP Client
+
+Part 4 Tool Discovery
+
+Part 5 Tool Execution
+
+Part 6 LangChain Wrapper
+
+Part 7 LangGraph Integration
+
+Part 8 Official GitHub MCP
+
+Part 9 Official Filesystem MCP
+
+Part 10 Official Brave Search MCP
+
 
  
