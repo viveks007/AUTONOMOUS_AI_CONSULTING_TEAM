@@ -1,5 +1,5 @@
 from graph.state import ConsultingState
-from llm.groq_client import llm
+from llm.router import invoke_llm
 from prompts.finance_prompt import FINANCE_PROMPT
 
 
@@ -8,7 +8,7 @@ def financial_analyst(
 ):
     print("========== Financial Analyst ==========")
 
-    response = llm.invoke(
+    response = invoke_llm(
         FINANCE_PROMPT.format(
             architecture=
             state["architecture"]

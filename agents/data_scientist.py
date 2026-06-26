@@ -2,10 +2,13 @@ from langchain_core.messages import AIMessage
 
 from graph.state import ConsultingState
 
-from llm.groq_client import llm_with_tools
+from llm.router import invoke_llm
 
 from prompts.ds_prompt import DS_PROMPT
 
+from utils.logger import logger
+
+logger.info("Data Scientist Agent Started")
 
 def data_scientist(
     state: ConsultingState
@@ -13,7 +16,7 @@ def data_scientist(
 
     print("\n========== Data Scientist ==========")
 
-    response: AIMessage = llm_with_tools.invoke(
+    response: AIMessage = invoke_llm(
 
         DS_PROMPT.format(
 

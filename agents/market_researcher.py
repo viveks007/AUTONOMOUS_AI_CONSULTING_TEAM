@@ -2,10 +2,13 @@ from langchain_core.messages import AIMessage
 
 from graph.state import ConsultingState
 
-from llm.groq_client import llm_with_tools
+from llm.router import invoke_llm
 
 from prompts.market_prompt import MARKET_PROMPT
 
+from utils.logger import logger
+
+logger.info("Market Researcher Agent Started")
 
 def market_researcher(
     state: ConsultingState
@@ -13,7 +16,7 @@ def market_researcher(
 
     print("\n========== Market Researcher ==========")
 
-    response: AIMessage = llm_with_tools.invoke(
+    response: AIMessage = invoke_llm(
 
         MARKET_PROMPT.format(
 
@@ -40,10 +43,10 @@ def market_researcher(
         "analysis_sections": [
 
             f"""
-MARKET RESEARCH
+    MARKET RESEARCH
 
-{response.content}
-"""
+    {response.content}
+    """
 
         ]
 

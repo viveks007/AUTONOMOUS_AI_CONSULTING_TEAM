@@ -1,5 +1,6 @@
+from graph import state
 from graph.state import ConsultingState
-from llm.groq_client import llm
+from llm.router import invoke_llm
 from prompts.reviewer_prompt import REVIEWER_PROMPT
 
 
@@ -8,7 +9,12 @@ def reviewer(
 ):
     print("========== Reviewer ==========")
 
-    response = llm.invoke(
+    print("\n===== Reviewer State =====")
+
+    for key, value in state.items():
+        print(key)
+
+    response = invoke_llm(
         REVIEWER_PROMPT.format(
             business_analysis=
             state["business_analysis"],

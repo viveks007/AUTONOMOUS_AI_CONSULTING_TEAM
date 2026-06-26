@@ -1,9 +1,11 @@
 import logging
+from config.settings import DEBUG
 
+LOG_LEVEL = logging.INFO if DEBUG else logging.ERROR
 
 logging.basicConfig(
 
-    level=logging.INFO,
+    level=LOG_LEVEL,
 
     format="%(asctime)s - %(levelname)s - %(message)s"
 
