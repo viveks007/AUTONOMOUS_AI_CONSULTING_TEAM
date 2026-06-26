@@ -1,52 +1,77 @@
-from langchain_core.messages import AIMessage
-
 from graph.state import ConsultingState
+
+from langchain_core.messages import AIMessage
 
 from llm.router import invoke_llm
 
 from prompts.market_prompt import MARKET_PROMPT
 
-from utils.logger import logger
+from utils.tool_executor import execute_tools
 
-logger.info("Market Researcher Agent Started")
+from graph.state import ConsultingState
 
-def market_researcher(
-    state: ConsultingState
-):
+from langchain_core.messages import (
+    AIMessage,
+    HumanMessage
+)
+
+from llm.router import invoke_llm
+
+from prompts.market_prompt import MARKET_PROMPT
+
+from utils.tool_executor import execute_tools
+
+
+def market_researcher(state: ConsultingState):
 
     print("\n========== Market Researcher ==========")
 
-    response: AIMessage = invoke_llm(
+    messages = [
 
-        MARKET_PROMPT.format(
+        HumanMessage(
 
-            user_query=state["user_query"]
+            content=MARKET_PROMPT.format(
+
+                user_query=state["user_query"]
+
+            )
 
         )
 
-    )
+    ]
 
-    if response.tool_calls:
+    ai_message: AIMessage = invoke_llm(messages)
 
-        print("\nTool Calls")
+    messages.append(ai_message)
 
-        print(response.tool_calls)
+    if ai_message.tool_calls:
+
+        print("\nTool Calls Found")
+        print(ai_message.tool_calls)
+
+        tool_messages = execute_tools(ai_message)
+
+        messages.extend(tool_messages)
+
+        final_response: AIMessage = invoke_llm(messages)
 
     else:
 
-        print("\nNo Tool Called")
+        print("\nNo Tool Calls")
+
+        final_response = ai_message
 
     return {
 
-        "market_analysis": response.content,
+        "market_analysis": final_response.content,
 
         "analysis_sections": [
 
             f"""
-    MARKET RESEARCH
+MARKET ANALYSIS
 
-    {response.content}
-    """
+{final_response.content}
+"""
 
         ]
 

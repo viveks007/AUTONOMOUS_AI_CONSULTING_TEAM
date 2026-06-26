@@ -2,13 +2,7 @@ from graph.workflow import graph
 from langchain_core.messages import HumanMessage
 
 query = """
-A company invested ₹1,000,000.
-
-Revenue after one year is ₹1,350,000.
-
-Calculate ROI and explain whether the investment was successful.
-
-Note: output token not more than 50 words
+What is today's date and current quarter?
 """
 
 initial_state = {
@@ -22,7 +16,20 @@ initial_state = {
     ]
 }
 
-result = graph.invoke(initial_state)
+config = {
+    "configurable": {
+        "thread_id": "consulting_demo_2"
+    }
+}
+
+result = graph.invoke(
+    initial_state,
+    config=config
+)
+
+checkpoint = graph.get_state(config)
+
+#print(checkpoint.values)
 
 print("\n========== FINAL OUTPUT ==========\n")
 

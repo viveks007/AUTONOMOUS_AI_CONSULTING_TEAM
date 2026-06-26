@@ -1,18 +1,17 @@
 from groq import RateLimitError
+import socket
 
 from llm.llm_provider import (
     groq_llm_with_tools,
     gemini_llm_with_tools
 )
 
-import socket
 
-
-def invoke_llm(prompt):
+def invoke_llm(input_data):
 
     try:
 
-        return groq_llm_with_tools.invoke(prompt)
+        return groq_llm_with_tools.invoke(input_data)
 
     except (
         RateLimitError,
@@ -24,4 +23,4 @@ def invoke_llm(prompt):
 
         print("Fallback → Gemini")
 
-        return gemini_llm_with_tools.invoke(prompt)
+        return gemini_llm_with_tools.invoke(input_data)

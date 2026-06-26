@@ -1,51 +1,76 @@
-from langchain_core.messages import AIMessage
-
 from graph.state import ConsultingState
+
+from langchain_core.messages import AIMessage
 
 from llm.router import invoke_llm
 
 from prompts.ds_prompt import DS_PROMPT
 
-from utils.logger import logger
+from utils.tool_executor import execute_tools
 
-logger.info("Data Scientist Agent Started")
+from graph.state import ConsultingState
 
-def data_scientist(
-    state: ConsultingState
-):
+from langchain_core.messages import (
+    AIMessage,
+    HumanMessage
+)
+
+from llm.router import invoke_llm
+
+from prompts.ds_prompt import DS_PROMPT
+
+from utils.tool_executor import execute_tools
+
+
+def data_scientist(state: ConsultingState):
 
     print("\n========== Data Scientist ==========")
 
-    response: AIMessage = invoke_llm(
+    messages = [
 
-        DS_PROMPT.format(
+        HumanMessage(
 
-            user_query=state["user_query"]
+            content=DS_PROMPT.format(
+
+                user_query=state["user_query"]
+
+            )
 
         )
 
-    )
+    ]
 
-    if response.tool_calls:
+    ai_message: AIMessage = invoke_llm(messages)
 
-        print("\nTool Calls")
+    messages.append(ai_message)
 
-        print(response.tool_calls)
+    if ai_message.tool_calls:
+
+        print("\nTool Calls Found")
+        print(ai_message.tool_calls)
+
+        tool_messages = execute_tools(ai_message)
+
+        messages.extend(tool_messages)
+
+        final_response: AIMessage = invoke_llm(messages)
 
     else:
 
-        print("\nNo Tool Called")
+        print("\nNo Tool Calls")
+
+        final_response = ai_message
 
     return {
 
-        "ds_analysis": response.content,
+        "ds_analysis": final_response.content,
 
         "analysis_sections": [
 
             f"""
-DATA SCIENCE
+DATA SCIENCE ANALYSIS
 
-{response.content}
+{final_response.content}
 """
 
         ]

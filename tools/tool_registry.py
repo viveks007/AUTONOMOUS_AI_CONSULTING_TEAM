@@ -1,4 +1,5 @@
 from tools.calculator_tool import calculator
+from tools.datetime_tool import get_current_datetime
 #from tools.web_search_tool import web_search
 #from tools.wikipedia_tool import wikipedia
 #from tools.sql_tool import sql_tool
@@ -7,7 +8,9 @@ from tools.calculator_tool import calculator
 
 TOOLS = [
 
-    calculator
+    calculator,
+
+    get_current_datetime
     #,
 
     #web_search,
@@ -19,3 +22,11 @@ TOOLS = [
     #pdf_reader
 
 ]
+
+TOOL_MAP = {
+
+    tool.name: tool
+
+    for tool in TOOLS
+
+}

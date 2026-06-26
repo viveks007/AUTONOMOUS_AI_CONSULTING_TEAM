@@ -95,3 +95,38 @@ version 3:
         └──────No─────────────┘
                     ▼
                Gemini Response
+
+
+version 4:
+
+                User
+                  │
+                  ▼
+           LangGraph Graph
+                  │
+                  ▼
+         SQLite Checkpointer
+                  │
+                  ▼
+      checkpoint.db (disk)
+
+
+version 5:
+
+                  LangGraph Agent
+                        │
+              Tool Calling (@tool)
+                        │
+        ┌───────────────┴────────────────┐
+        │                                │
+ Native Tools                      MCP Tools
+        │                                │
+ Calculator                     Brave Search MCP
+ CSV Analyzer                   Weather MCP
+ File Reader
+ DateTime
+ Wikipedia
+
+ 
+
+ 

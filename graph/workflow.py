@@ -12,6 +12,10 @@ from agents.reviewer import reviewer
 
 from graph.parallel_router import parallel_router
 
+#from checkpoint.checkpointer import checkpointer
+
+from checkpoint.sqlite_checkpoint import checkpointer
+
 
 builder = StateGraph(ConsultingState)
 
@@ -84,4 +88,6 @@ builder.add_edge(
     END
 )
 
-graph = builder.compile()
+graph = builder.compile(
+    checkpointer=checkpointer
+)
