@@ -1,40 +1,55 @@
 from graph.workflow import graph
-from langchain_core.messages import HumanMessage
-
-query = """
-What is today's date and current quarter?
-"""
-
-initial_state = {
-    "user_query": query,
-"messages": [
-
-        HumanMessage(
-            content=query
-        )
-
-    ]
-}
 
 config = {
+
     "configurable": {
-        "thread_id": "consulting_demo_2"
+
+        "thread_id": "consulting_demo123"
+
     }
+
 }
 
-result = graph.invoke(
-    initial_state,
-    config=config
-)
+while True:
 
-checkpoint = graph.get_state(config)
+    query = input("\nYou : ")
 
-#print(checkpoint.values)
+    if query.lower() == "exit":
 
-print("\n========== FINAL OUTPUT ==========\n")
+        break
 
-for key, value in result.items():
-    print(f"\n{'='*80}")
-    print(key.upper())
-    print('='*80)
-    print(value)
+    result = graph.invoke(
+
+        {
+
+            "user_query": query,
+
+            "completed_agents": []
+
+        },
+
+        config=config
+
+    )
+
+    print("\n========== FINAL OUTPUT ==========\n")
+
+    if result.get("tool_response"):
+
+        print(result["tool_response"])
+
+    elif result.get("review_feedback"):
+
+        print(result["review_feedback"])
+
+    elif result.get("business_analysis"):
+
+        print(result["business_analysis"])
+
+    elif result.get("ds_analysis"):
+
+        print(result["ds_analysis"])
+
+    else:
+
+        print(result)

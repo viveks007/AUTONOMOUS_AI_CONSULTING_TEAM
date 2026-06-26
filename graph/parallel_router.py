@@ -6,10 +6,6 @@ def parallel_router(state: ConsultingState):
 
     return [
 
-        Send(
-            "business_analyst",
-            state
-        ),
 
         Send(
             "market_researcher",

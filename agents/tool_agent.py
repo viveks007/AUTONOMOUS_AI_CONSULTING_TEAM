@@ -1,23 +1,23 @@
 from graph.state import ConsultingState
 
-from prompts.finance_prompt import FINANCE_PROMPT
+from prompts.tool_prompt import TOOL_PROMPT
 
 from agents.agent_executor import execute_agent
 
 from utils.logger import logger
 
-logger.info("Financial Analyst Loaded")
+logger.info("Tool Agent Loaded")
 
 
-def financial_analyst(
+def tool_agent(
     state: ConsultingState
 ):
 
-    print("\n========== Financial Analyst ==========")
+    print("\n========== Tool Agent ==========")
 
     response = execute_agent(
 
-        system_prompt=FINANCE_PROMPT,
+        system_prompt=TOOL_PROMPT,
 
         user_query=state["user_query"]
 
@@ -31,7 +31,7 @@ def financial_analyst(
                 "completed_agents",
                 []
             )
-            + ["financial_analyst"]
+            + ["tool_agent"]
 
         )
 
@@ -39,7 +39,7 @@ def financial_analyst(
 
     return {
 
-        "roi_analysis": response,
+        "tool_response": response,
 
         "completed_agents": completed
 

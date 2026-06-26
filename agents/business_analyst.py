@@ -1,60 +1,46 @@
 from graph.state import ConsultingState
-from langchain_core.messages import AIMessage
-from langchain_core.messages import HumanMessage
 
-from llm.router import invoke_llm
 from prompts.business_prompt import BUSINESS_PROMPT
 
-from utils.tool_executor import execute_tools
+from agents.agent_executor import execute_agent
 
 from utils.logger import logger
 
-logger.info("Business Agent Started")
+logger.info("Business Analyst Loaded")
 
 
-def business_analyst(state: ConsultingState):
+def business_analyst(
+    state: ConsultingState
+):
 
     print("\n========== Business Analyst ==========")
 
-    messages = [
+    response = execute_agent(
 
-            HumanMessage(
+        system_prompt=BUSINESS_PROMPT,
 
-                content=BUSINESS_PROMPT.format(
-                    user_query=state["user_query"]
-                )
+        user_query=state["user_query"]
 
+    )
+
+    completed = list(
+
+        set(
+
+            state.get(
+                "completed_agents",
+                []
             )
+            + ["business_analyst"]
 
-        ]
+        )
 
-    ai_message = invoke_llm(messages)
-
-    messages.append(ai_message)
-
-    if ai_message.tool_calls:
-
-            tool_messages = execute_tools(ai_message)
-
-            messages.extend(tool_messages)
-
-            final_response = invoke_llm(messages)
-
-    else:
-
-            final_response = ai_message
+    )
 
     return {
 
-            "business_analysis": final_response.content,
+        "business_analysis": response,
 
-            "analysis_sections": [
+        "completed_agents": completed
 
-                f"""
-        BUSINESS ANALYSIS
-
-        {final_response.content}
-        """
-
-            ]
-        }
+    }

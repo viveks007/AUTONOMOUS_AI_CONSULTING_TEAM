@@ -165,4 +165,36 @@ Part 9 Official Filesystem MCP
 Part 10 Official Brave Search MCP
 
 
- 
+version 6: router introduce
+                        User
+                          │
+                          ▼
+                  Intent Router
+                          │
+                          ▼
+                    Supervisor
+                          │
+        ┌─────────────────┼─────────────────┐
+        ▼                 ▼                 ▼
+   Tool Agent      Business Agent     Data Scientist
+        │                 │                 │
+        └─────────────────┴─────────────────┘
+                          │
+                          ▼
+                     Supervisor
+                          │
+         decides next agent OR END
+                          │
+        ┌──────────────┬──────────────┐
+        ▼              ▼              ▼
+ Market Research   Architecture   Financial
+        │              │              │
+        └──────────────┴──────────────┘
+                          │
+                          ▼
+                     Supervisor
+                          │
+                     Reviewer?
+                          │
+                          ▼
+                         END

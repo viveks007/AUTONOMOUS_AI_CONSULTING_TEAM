@@ -1,21 +1,46 @@
 from graph.state import ConsultingState
-from llm.router import invoke_llm
+
 from prompts.architect_prompt import ARCHITECT_PROMPT
+
+from agents.agent_executor import execute_agent
+
+from utils.logger import logger
+
+logger.info("Solution Architect Loaded")
 
 
 def solution_architect(
     state: ConsultingState
 ):
-    print("========== Solution Architect ==========")
 
-    response = invoke_llm(
-        ARCHITECT_PROMPT.format(
-            analysis_sections="\n\n".join(
-            state["analysis_sections"]
-        ))
+    print("\n========== Solution Architect ==========")
+
+    response = execute_agent(
+
+        system_prompt=ARCHITECT_PROMPT,
+
+        user_query=state["user_query"]
+
+    )
+
+    completed = list(
+
+        set(
+
+            state.get(
+                "completed_agents",
+                []
+            )
+            + ["solution_architect"]
+
+        )
+
     )
 
     return {
-        "architecture":
-        response.content
+
+        "architecture": response,
+
+        "completed_agents": completed
+
     }

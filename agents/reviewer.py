@@ -1,39 +1,74 @@
-from graph import state
 from graph.state import ConsultingState
-from llm.router import invoke_llm
+
 from prompts.reviewer_prompt import REVIEWER_PROMPT
+
+from agents.agent_executor import execute_agent
+
+from utils.logger import logger
+
+logger.info("Reviewer Loaded")
 
 
 def reviewer(
     state: ConsultingState
 ):
-    print("========== Reviewer ==========")
 
-    print("\n===== Reviewer State =====")
+    print("\n========== Reviewer ==========")
 
-    for key, value in state.items():
-        print(key)
+    review_input = f"""
 
-    response = invoke_llm(
-        REVIEWER_PROMPT.format(
-            business_analysis=
-            state["business_analysis"],
+User Query
+----------
+{state["user_query"]}
 
-            market_analysis=
-            state["market_analysis"],
+Business Analysis
+-----------------
+{state.get("business_analysis", "")}
 
-            ds_analysis=
-            state["ds_analysis"],
+Market Analysis
+---------------
+{state.get("market_analysis", "")}
 
-            architecture=
-            state["architecture"],
+Data Science Analysis
+---------------------
+{state.get("ds_analysis", "")}
 
-            roi_analysis=
-            state["roi_analysis"]
+Solution Architecture
+---------------------
+{state.get("architecture", "")}
+
+Financial Analysis
+------------------
+{state.get("roi_analysis", "")}
+
+"""
+
+    response = execute_agent(
+
+        system_prompt=REVIEWER_PROMPT,
+
+        user_query=review_input
+
+    )
+
+    completed = list(
+
+        set(
+
+            state.get(
+                "completed_agents",
+                []
+            )
+            + ["reviewer"]
+
         )
+
     )
 
     return {
-        "review_feedback":
-        response.content
+
+        "review_feedback": response,
+
+        "completed_agents": completed
+
     }
