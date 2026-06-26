@@ -143,3 +143,26 @@ AUTONOMOUS_AI_CONSULTING_TEAM/
 ├── app.py
 ├── requirements.txt
 └── .env
+
+version 2 structure:
+
+                          User
+                            │
+                            ▼
+                     LangGraph Workflow
+                            │
+                     Parallel Execution
+        ┌───────────────────┼───────────────────┐
+        ▼                   ▼                   ▼
+ Business Agent      Market Researcher     Data Scientist
+        │                   │                   │
+        └──────────────┬────┴──────────────┬────┘
+                       ▼
+              Solution Architect
+                       ▼
+              Financial Analyst
+                       ▼
+                  Reviewer
+                       ▼
+                      END
+
