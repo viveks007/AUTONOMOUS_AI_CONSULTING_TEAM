@@ -19,7 +19,9 @@ def solution_architect(
 
         system_prompt=ARCHITECT_PROMPT,
 
-        user_query=state["user_query"]
+        user_query=state["user_query"],
+
+        use_tools=False
 
     )
 

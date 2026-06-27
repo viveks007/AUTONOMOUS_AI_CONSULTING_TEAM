@@ -19,7 +19,9 @@ def financial_analyst(
 
         system_prompt=FINANCE_PROMPT,
 
-        user_query=state["user_query"]
+        user_query=state["user_query"],
+
+        use_tools=False
 
     )
 

@@ -47,7 +47,9 @@ Financial Analysis
 
         system_prompt=REVIEWER_PROMPT,
 
-        user_query=review_input
+        user_query=review_input,
+
+        use_tools=False
 
     )
 

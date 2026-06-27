@@ -28,7 +28,9 @@ def intent_router(
 
     ]
 
-    response = invoke_llm(messages)
+    response = invoke_llm(
+    messages,
+    use_tools=False )
 
     raw_response = response.content.strip()
 

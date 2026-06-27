@@ -24,5 +24,4 @@ Financial analysis
 Business Query:
 {user_query}
 
-Note: output token not more than 50 words, point format, no extra explanations.
 """

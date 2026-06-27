@@ -4,7 +4,7 @@ config = {
 
     "configurable": {
 
-        "thread_id": "consulting_demo123"
+        "thread_id": "consulting_xcvzi"
 
     }
 

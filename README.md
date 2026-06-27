@@ -20,7 +20,32 @@ Features:
 - Human In The Loop
 - LangSmith Monitoring
 
+Final plan:
 
+                    User
+                      │
+                Intent Router
+                      │
+                  Supervisor
+                      │
+      ┌───────────────┼────────────────┐
+      ▼               ▼                ▼
+ Tool Agent     Business Agent    Data Scientist
+      │
+      ▼
+  Tool Executor
+      │
+ ┌────┼──────────────────────────────────────┐
+ │    │          │           │               │
+ ▼    ▼          ▼           ▼               ▼
+Calculator   DateTime   Weather MCP   GitHub MCP   Azure MCP
+                                          │
+                                     SQL MCP
+                                          │
+                                    Browser MCP
+                                          │
+                                     RAG MCP
+                                     
 version 1 structure:
 
                  User

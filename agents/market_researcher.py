@@ -19,7 +19,9 @@ def market_researcher(
 
         system_prompt=MARKET_PROMPT,
 
-        user_query=state["user_query"]
+        user_query=state["user_query"],
+
+        use_tools=False
 
     )
 

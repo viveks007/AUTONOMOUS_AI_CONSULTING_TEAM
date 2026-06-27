@@ -19,7 +19,9 @@ def business_analyst(
 
         system_prompt=BUSINESS_PROMPT,
 
-        user_query=state["user_query"]
+        user_query=state["user_query"],
+
+        use_tools=False
 
     )
 
