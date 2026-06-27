@@ -223,3 +223,37 @@ version 6: router introduce
                           │
                           ▼
                          END
+
+version 7: add google drive mcp to store
+
+User:
+Create a business strategy for Tesla and save it to Google Drive.
+
+↓
+
+Intent Router
+
+↓
+
+Supervisor
+
+↓
+
+Business Agent
+
+↓
+
+Reviewer
+
+↓
+
+Tool Agent
+
+↓
+
+Google Drive MCP (Existing)
+
+↓
+
+Google Drive
+

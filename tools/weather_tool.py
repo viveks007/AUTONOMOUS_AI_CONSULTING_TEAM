@@ -1,6 +1,6 @@
 from langchain_core.tools import tool
 
-from mcp.weather_client import get_weather
+from mcp_servers.weather_client import get_weather
 
 
 @tool

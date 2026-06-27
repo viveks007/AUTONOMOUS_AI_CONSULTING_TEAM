@@ -26,9 +26,14 @@ TOOL
 - Time
 - Calculator
 - Unit conversion
-- Currency conversion
-- Wikipedia
-- File operations
+- google drive
+- upload
+- drive
+- save
+-store
+-report
+-document
+-folder
 
 BUSINESS
 - SWOT

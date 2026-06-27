@@ -15,15 +15,15 @@ def get_current_datetime() -> str:
     quarter = (now.month - 1) // 3 + 1
 
     return f"""
-Current Date : {now.strftime("%d-%m-%Y")}
+    Current Date : {now.strftime("%d-%m-%Y")}
 
-Current Time : {now.strftime("%H:%M:%S")}
+    Current Time : {now.strftime("%H:%M:%S")}
 
-Weekday : {now.strftime("%A")}
+    Weekday : {now.strftime("%A")}
 
-Month : {now.strftime("%B")}
+    Month : {now.strftime("%B")}
 
-Year : {now.year}
+    Year : {now.year}
 
-Quarter : Q{quarter}
-"""
+    Quarter : Q{quarter}
+    """
